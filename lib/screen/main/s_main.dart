@@ -1,8 +1,10 @@
+import 'package:after_layout/after_layout.dart';
+import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/screen/main/tab/tab_item.dart';
 import 'package:fast_app_base/screen/main/tab/tab_navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import '../../common/common.dart';
 import 'w_menu_drawer.dart';
 
 class MainScreen extends StatefulWidget {
@@ -12,18 +14,36 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => MainScreenState();
 }
 
-class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMixin {
+class MainScreenState extends State<MainScreen>
+    with SingleTickerProviderStateMixin, AfterLayoutMixin {
   TabItem _currentTab = TabItem.home;
-  final tabs = [TabItem.home, TabItem.favorite];
+  final tabs = [
+    TabItem.home,
+    TabItem.benefit,
+    TabItem.ttospay,
+    TabItem.stock,
+    TabItem.all
+  ];
   final List<GlobalKey<NavigatorState>> navigatorKeys = [];
 
   int get _currentIndex => tabs.indexOf(_currentTab);
 
-  GlobalKey<NavigatorState> get _currentTabNavigationKey => navigatorKeys[_currentIndex];
+  GlobalKey<NavigatorState> get _currentTabNavigationKey =>
+      navigatorKeys[_currentIndex];
 
   bool get extendBody => true;
 
   static double get bottomNavigationBarBorderRadius => 30.0;
+
+  static const double bottomNavigatorHeight = 50;
+
+
+  @override
+  FutureOr<void> afterFirstLayout(BuildContext context) {
+    FlutterNativeSplash.remove(); // FlutterNativeSplash 삭제
+
+    throw UnimplementedError();
+  }
 
   @override
   void initState() {
@@ -40,7 +60,8 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
         drawer: const MenuDrawer(),
         body: Container(
           color: context.appColors.seedColor.getMaterialColorValues[200],
-          padding: EdgeInsets.only(bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
+          padding: EdgeInsets.only(
+              bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
           child: SafeArea(
             bottom: !extendBody,
             child: pages,
@@ -65,15 +86,15 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
 
   Future<bool> _handleBackPressed() async {
     final isFirstRouteInCurrentTab =
-        (await _currentTabNavigationKey.currentState?.maybePop() == false);
+        (await _currentTabNavigationKey.currentState?.maybePop() == false); // 1. maybePop 이 호출이 될때마다 history가 하나씩 빠져나감.
     if (isFirstRouteInCurrentTab) {
       if (_currentTab != TabItem.home) {
-        _changeTab(tabs.indexOf(TabItem.home));
+        _changeTab(tabs.indexOf(TabItem.home)); // 2. 현재 route tab이 home이 아니라면 home으로 강제 이동된다.
         return false;
       }
     }
     // maybePop 가능하면 나가지 않는다.
-    return isFirstRouteInCurrentTab;
+    return isFirstRouteInCurrentTab; // 3. 현재 route tab이 home이라면  마지막에 isFirstRouteInCurrentTab 즉 true 가 반환되며 앱이 종료된다.
   }
 
   Widget _buildBottomNavigationBar(BuildContext context) {
@@ -119,13 +140,15 @@ class MainScreenState extends State<MainScreen> with SingleTickerProviderStateMi
     });
   }
 
-  BottomNavigationBarItem bottomItem(
-      bool activate, IconData iconData, IconData inActivateIconData, String label) {
+  BottomNavigationBarItem bottomItem(bool activate, IconData iconData,
+      IconData inActivateIconData, String label) {
     return BottomNavigationBarItem(
         icon: Icon(
           key: ValueKey(label),
           activate ? iconData : inActivateIconData,
-          color: activate ? context.appColors.iconButton : context.appColors.iconButtonInactivate,
+          color: activate
+              ? context.appColors.iconButton
+              : context.appColors.iconButtonInactivate,
         ),
         label: label);
   }
