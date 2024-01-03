@@ -1,5 +1,6 @@
 import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/dart/extension/context_extension.dart';
+import 'package:fast_app_base/screen/notification/s_notification.dart';
 import 'package:flutter/material.dart';
 
 const width10 = Width(10);
@@ -9,6 +10,7 @@ const height5 = Height(5);
 
 class TtosAppBar extends StatefulWidget {
   static const double appBarHeight = 60;
+
   const TtosAppBar({Key? key}) : super(key: key);
 
   @override
@@ -31,10 +33,8 @@ class _TtosAppBarState extends State<TtosAppBar> {
           Image.asset('$basePath/icon/map_point.png', height: 30),
           width10,
           Tap(
-            onTap: (){
-              setState(() {
-                _showRedDot=!_showRedDot;
-              });
+            onTap: () {
+              Nav.push(NotificationScreen());
             },
             child: Stack(
               children: [
