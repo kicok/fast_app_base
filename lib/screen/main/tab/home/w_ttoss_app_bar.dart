@@ -1,12 +1,6 @@
 import 'package:fast_app_base/common/common.dart';
-import 'package:fast_app_base/common/dart/extension/context_extension.dart';
 import 'package:fast_app_base/screen/notification/s_notification.dart';
 import 'package:flutter/material.dart';
-
-const width10 = Width(10);
-const width5 = Width(5);
-const height10 = Height(10);
-const height5 = Height(5);
 
 class TtosAppBar extends StatefulWidget {
   static const double appBarHeight = 60;
