@@ -37,7 +37,6 @@ class MainScreenState extends State<MainScreen>
 
   static const double bottomNavigatorHeight = 50;
 
-
   @override
   FutureOr<void> afterFirstLayout(BuildContext context) {
     FlutterNativeSplash.remove(); // FlutterNativeSplash 삭제
@@ -59,7 +58,7 @@ class MainScreenState extends State<MainScreen>
         extendBody: extendBody, //bottomNavigationBar 아래 영역 까지 그림
         drawer: const MenuDrawer(),
         body: Container(
-          color: context.appColors.seedColor.getMaterialColorValues[200],
+          color: context.appColors.appBarBackground.getMaterialColorValues[900],
           padding: EdgeInsets.only(
               bottom: extendBody ? 60 - bottomNavigationBarBorderRadius : 0),
           child: SafeArea(
@@ -86,10 +85,12 @@ class MainScreenState extends State<MainScreen>
 
   Future<bool> _handleBackPressed() async {
     final isFirstRouteInCurrentTab =
-        (await _currentTabNavigationKey.currentState?.maybePop() == false); // 1. maybePop 이 호출이 될때마다 history가 하나씩 빠져나감.
+        (await _currentTabNavigationKey.currentState?.maybePop() ==
+            false); // 1. maybePop 이 호출이 될때마다 history가 하나씩 빠져나감.
     if (isFirstRouteInCurrentTab) {
       if (_currentTab != TabItem.home) {
-        _changeTab(tabs.indexOf(TabItem.home)); // 2. 현재 route tab이 home이 아니라면 home으로 강제 이동된다.
+        _changeTab(tabs.indexOf(
+            TabItem.home)); // 2. 현재 route tab이 home이 아니라면 home으로 강제 이동된다.
         return false;
       }
     }

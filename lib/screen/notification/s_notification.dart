@@ -13,25 +13,28 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Material(
       // backgroundColor: AppColors.veryDarkGrey, //backgroundColor가 null 이면  themeData.scaffoldBackgroundColor를 사용한다.
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            title: Text('알림'),
-          ),
-          SliverList(
-              delegate: SliverChildBuilderDelegate(
-            (context, index) => NotificationItemWidget(
-              notification: notificationDummies[index],
-              onTap: () {
-                NotificationDialog(
-                    [notificationDummies[0], notificationDummies[1]]).show();
-              },
+      color: Colors.black,
+      child: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            const SliverAppBar(
+              title: Text('알림'),
             ),
-            childCount: notificationDummies.length,
-          )),
-        ],
+            SliverList(
+                delegate: SliverChildBuilderDelegate(
+              (context, index) => NotificationItemWidget(
+                notification: notificationDummies[index],
+                onTap: () {
+                  NotificationDialog(
+                      [notificationDummies[0], notificationDummies[1]]).show();
+                },
+              ),
+              childCount: notificationDummies.length,
+            )),
+          ],
+        ),
       ),
     );
   }

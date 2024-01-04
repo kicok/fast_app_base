@@ -42,4 +42,36 @@ final notificationDummies = <TtossNotification>[
     '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
     DateTime.now().subtract(1.days),
   ),
+  TtossNotification(
+    NotificationType.walk,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(12.hours),
+    isRead: true,
+  ),
+  TtossNotification(
+    NotificationType.moneyTip,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(13.hours),
+  ),
+  TtossNotification(
+    NotificationType.people,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(1.days),
+  ),
+  TtossNotification(
+    NotificationType.walk,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(12.hours),
+    isRead: true,
+  ),
+  TtossNotification(
+    NotificationType.moneyTip,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(13.hours),
+  ),
+  TtossNotification(
+    NotificationType.people,
+    '이번주에 영화 한편 어때요? CGV 할인 쿠폰이 도착했어요',
+    DateTime.now().subtract(1.days),
+  ),
 ];

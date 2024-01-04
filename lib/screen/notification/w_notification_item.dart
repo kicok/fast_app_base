@@ -37,7 +37,7 @@ class _NotificationItemWidgetState extends State<NotificationItemWidget> {
                     width: iconWidth),
                 widget.notification.type.name.text
                     .size(12)
-                    .color(context.appColors.lessImportantText)
+                    .color(context.appColors.lessImportant)
                     .make(),
                 emptyExpanded,
                 timeago
@@ -46,7 +46,7 @@ class _NotificationItemWidgetState extends State<NotificationItemWidget> {
                             .languageCode) // locale이 app에 설정된 locale를 따라 간다.
                     .text
                     .size(13)
-                    .color(context.appColors.lessImportantText)
+                    .color(context.appColors.lessImportant)
                     .make(),
               ],
             ),
