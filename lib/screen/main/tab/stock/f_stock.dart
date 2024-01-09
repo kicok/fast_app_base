@@ -2,6 +2,7 @@ import 'package:fast_app_base/common/common.dart';
 import 'package:fast_app_base/common/widget/w_image_button.dart';
 import 'package:flutter/material.dart';
 
+import 'search/f_search_stock.dart';
 import 'tab/f_my_stock.dart';
 import 'tab/f_todays_discovery.dart';
 
@@ -34,7 +35,7 @@ class _StockFragmentState extends State<StockFragment>
             ImageButton(
               imagePath: '$basePath/icon/stock_search.png',
               onTap: () {
-                context.showSnackbar('검색');
+                Nav.push(SearchStockFragment());
               },
             ),
             ImageButton(
