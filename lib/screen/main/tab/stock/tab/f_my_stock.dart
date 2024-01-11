@@ -4,7 +4,7 @@ import 'package:fast_app_base/common/widget/w_long_button.dart';
 import 'package:fast_app_base/common/widget/w_rounded_container.dart';
 import 'package:flutter/material.dart';
 
-import 'f_intereststock_list.dart';
+import 'w_intereststock_list.dart';
 
 class MyStockFragment extends StatelessWidget {
   const MyStockFragment({super.key});
