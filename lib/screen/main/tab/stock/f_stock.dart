@@ -3,6 +3,7 @@ import 'package:fast_app_base/common/widget/w_image_button.dart';
 import 'package:flutter/material.dart';
 
 import 'search/s_search_stock.dart';
+import 'setting/s_setting.dart';
 import 'tab/f_my_stock.dart';
 import 'tab/f_todays_discovery.dart';
 
@@ -47,7 +48,7 @@ class _StockFragmentState extends State<StockFragment>
             ImageButton(
               imagePath: '$basePath/icon/stock_settings.png',
               onTap: () {
-                context.showSnackbar('셋팅');
+                Nav.push(const SettingScreen());
               },
             ),
           ],
